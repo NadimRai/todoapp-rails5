@@ -1,6 +1,6 @@
 class TodosController < ApplicationController
 	def index
-		
+  		@todos = Todo.all
 	end
 
 	def new
@@ -19,6 +19,7 @@ class TodosController < ApplicationController
 
 	def show
 		@todo = Todo.find(params[:id])
+
 	end
 
 	def edit
@@ -26,6 +27,13 @@ class TodosController < ApplicationController
 	end
 
 	def update
+		@todo = Todo.find(params[:id])
+		if @todo.update
+  			flash[:notice] = "Todo was updated successfully"
+    		redirect_to todo_path(@todo)
+  		else
+    		render 'new'
+  		end    
 	end
 
 	def destroy
