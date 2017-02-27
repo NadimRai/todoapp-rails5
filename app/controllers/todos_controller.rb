@@ -22,6 +22,7 @@ class TodosController < ApplicationController
 	end
 
 	def edit
+		@todo = Todo.find(params[:id])
 	end
 
 	def update
